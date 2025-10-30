@@ -1,0 +1,12 @@
+services:
+  anvil:
+    image: ghcr.io/foundry-rs/foundry:stable
+    container_name: anvil
+    environment:
+      ANVIL_IP_ADDR: "0.0.0.0"
+    working_dir: /anvil
+    ports:
+      - "8545:8545"
+    volumes:
+      - './anvil-data:/anvil'
+    entrypoint: ["anvil", "--chain-id", "1337", "--accounts", "2"]
